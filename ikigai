@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IKIGAI 生存意义生成器</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .circle { transition: all 0.3s ease; opacity: 0.6; mix-blend-mode: multiply; }
+        .circle:hover { opacity: 0.8; transform: scale(1.02); }
+        .label-input { background: rgba(255,255,255,0.8); border: 1px solid #ddd; border-radius: 4px; padding: 4px; width: 100%; font-size: 12px; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen p-8">
+    <div class="max-w-4xl mx-auto">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl font-bold text-gray-800">IKIGAI 交互式生成器</h1>
+            <p class="text-gray-600 mt-2">探索你的激情、使命、职业与天职的交汇点</p>
+        </header>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            <div class="space-y-4">
+                <div class="p-4 bg-red-50 border-l-4 border-red-400">
+                    <label class="block font-bold text-red-700">你热爱的 (Love)</label>
+                    <input type="text" id="in-love" class="w-full mt-1 p-2 border rounded" placeholder="如：绘画、编程、帮助他人..." oninput="updateDiagram()">
+                </div>
+                <div class="p-4 bg-yellow-50 border-l-4 border-yellow-400">
+                    <label class="block font-bold text-yellow-700">你擅长的 (Great at)</label>
+                    <input type="text" id="in-good" class="w-full mt-1 p-2 border rounded" placeholder="如：逻辑分析、演讲、烹饪..." oninput="updateDiagram()">
+                </div>
+                <div class="p-4 bg-blue-50 border-l-4 border-blue-400">
+                    <label class="block font-bold text-blue-700">世界需要的 (World Needs)</label>
+                    <input type="text" id="in-need" class="w-full mt-1 p-2 border rounded" placeholder="如：环境保护、心理健康教育..." oninput="updateDiagram()">
+                </div>
+                <div class="p-4 bg-green-50 border-l-4 border-green-400">
+                    <label class="block font-bold text-green-700">能获得报酬的 (Paid for)</label>
+                    <input type="text" id="in-paid" class="w-full mt-1 p-2 border rounded" placeholder="如：软件开发、咨询、写作..." oninput="updateDiagram()">
+                </div>
+                <button onclick="window.print()" class="w-full bg-gray-800 text-white py-3 rounded-lg font-bold hover:bg-black transition">保存为 PDF / 打印</button>
+            </div>
+
+            <div class="relative w-full aspect-square flex items-center justify-center">
+                <div class="relative w-80 h-80">
+                    <div class="circle absolute top-0 left-20 w-40 h-40 bg-red-400 rounded-full flex flex-col items-center justify-center p-4 text-center">
+                        <span class="font-bold text-xs mb-1">热爱</span>
+                        <div id="out-love" class="text-[10px] leading-tight"></div>
+                    </div>
+                    <div class="circle absolute top-20 left-0 w-40 h-40 bg-yellow-400 rounded-full flex flex-col items-center justify-center p-4 text-center">
+                        <span class="font-bold text-xs mb-1">擅长</span>
+                        <div id="out-good" class="text-[10px] leading-tight"></div>
+                    </div>
+                    <div class="circle absolute top-20 right-0 w-40 h-40 bg-blue-400 rounded-full flex flex-col items-center justify-center p-4 text-center">
+                        <span class="font-bold text-xs mb-1">需求</span>
+                        <div id="out-need" class="text-[10px] leading-tight"></div>
+                    </div>
+                    <div class="circle absolute bottom-0 left-20 w-40 h-40 bg-green-400 rounded-full flex flex-col items-center justify-center p-4 text-center">
+                        <span class="font-bold text-xs mb-1">报酬</span>
+                        <div id="out-paid" class="text-[10px] leading-tight"></div>
+                    </div>
+                    <div class="absolute inset-0 m-auto w-12 h-12 bg-white rounded-full shadow-lg flex items-center justify-center border-2 border-gray-800 z-10">
+                        <span class="text-[8px] font-black">IKIGAI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateDiagram() {
+            document.getElementById('out-love').innerText = document.getElementById('in-love').value;
+            document.getElementById('out-good').innerText = document.getElementById('in-good').value;
+            document.getElementById('out-need').innerText = document.getElementById('in-need').value;
+            document.getElementById('out-paid').innerText = document.getElementById('in-paid').value;
+        }
+    </script>
+</body>
+</html>
